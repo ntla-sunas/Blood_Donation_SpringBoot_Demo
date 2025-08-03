@@ -31,7 +31,7 @@ public class DonorService {
                 .build();
         return donorRepository.save(donor);
     }
-    
+
     // Lấy donor theo ID (nếu không có sẽ ném exception)
     public Donor getDonorById(Long id) {
         return donorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy donor có ID = " + id));
