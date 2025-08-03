@@ -14,7 +14,7 @@ public class DonorRequest {
     @Email(message = "Email không hợp lệ.")
     private String email;
 
-    @Pattern(regexp = "^(A|B|AB|O) [+-] ?$", message = "Nhóm máu phải là A, B, AB hoặc O (có thể kèm + hoặc -)")
+    @Pattern(regexp = "^(A|B|AB|O) [+-]$", message = "Nhóm máu phải là A, B, AB hoặc O (có thể kèm + hoặc -)")
     private String bloodType;
 
     @Min(value = 18, message ="Phải đủ 18 tuổi để hiến máu.")
