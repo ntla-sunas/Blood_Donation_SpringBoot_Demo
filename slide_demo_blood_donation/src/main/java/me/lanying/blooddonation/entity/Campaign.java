@@ -8,14 +8,17 @@ import java.util.List;
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Builder
+@Table(name = "campaign")
 
 public class Campaign {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+    private String name;
     private String location;
-    private LocalDate date;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String description;
 
     @OneToMany( mappedBy = "campaign", cascade = CascadeType.ALL)

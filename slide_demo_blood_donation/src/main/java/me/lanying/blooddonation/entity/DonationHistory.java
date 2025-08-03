@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Builder
+@Table(name = "donation_history")
 
 public class DonationHistory {
     @Id
@@ -14,6 +15,7 @@ public class DonationHistory {
 
     private Long id;
     private LocalDate donationDate;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "donor_id")
