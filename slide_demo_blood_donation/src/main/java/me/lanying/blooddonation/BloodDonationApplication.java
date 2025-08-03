@@ -1,17 +1,50 @@
 package me.lanying.blooddonation;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class BloodDonationApplication {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import me.lanying.blooddonation.entity.Donor;
+import me.lanying.blooddonation.repository.DonorRepository;
+import org.springframework.beans.factory.annotation.Autowire;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.Scanner;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+@SpringBootApplication
+public class BloodDonationApplication implements CommandLineRunner {
+    @Autowired
+    private DonorRepository donorRepository;
+
+    public static void main(String[] args) {
+        SpringApplication.run(BloodDonationApplication.class, args);
     }
+
+    @Override
+    public void run(String... args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("=== THÊM NGƯỜI HIẾN MÁU MỚI ===");
+        System.out.print("Nhập tên: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Nhập email: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Nhóm máu (A/B/AB/O): ");
+        String bloodType = scanner.nextLine();
+
+        System.out.print("Tuổi: ");
+        int age = scanner.nextInt();
+
+        Donor donor = Donor.builder()
+                .name(name)
+                .email(email)
+                .bloodType(bloodType)
+                .age(age)
+                .build();
+
+        donorRepository.save(donor);
+        System.out.println("Đã lưu thông tin người hiến máu vào database!");
+    }
+
+
 }
